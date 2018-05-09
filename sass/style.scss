@@ -1,0 +1,105 @@
+.boton {
+	text-decoration:none;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #ccc;
+	padding: 10px 30px;
+	border-radius: 5px;
+	color: #333;
+}
+
+.boton-rojo{
+	@extend .boton;
+	background: red;
+}
+
+.boton-grande{
+	@extend .boton;
+	font-size: 20px;
+	padding: 20px 50px;
+}
+
+.boton-borde {
+	@extend .boton;
+	border:solid green;
+	background: transparent;
+}
+
+@mixin border-radius ($valor){
+	-ms-border-radius: $valor;
+	-webkit-border-radius:$valor;
+	-o-border-radius:$valor;
+	-moz-border-radius:$valor;
+	border-radius: $valor;
+
+}
+
+.caja1, .caja2{
+	height: 100px;
+	width:100px;
+	background: red;
+	@include border-radius(10px);
+
+}
+
+.caja2 {
+	@include border-radius (20px);
+}
+
+@mixin hacer-circulos($tamano, $color){
+	width: $tamano;
+	height:$tamano;
+	background: $color;
+	@include border-radius (50%);
+	display:inline-block;
+}
+
+.circulo1 {
+	@include hacer-circulos (100px, red);
+}
+
+
+.circulo2 {
+	@include hacer-circulos (300px, green);
+}
+
+
+@mixin hacer-boton ($tamano-letra, $background, $vertical, $horizontal, $color, $tamano-borde, $color-borde){
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: $tamano-letra;
+	background: $background;
+	padding: $vertical $horizontal;
+	border-radius: 5px;
+	text-decoration: none;
+	color: $color;
+	transition: 1s;
+	display:inline-block;
+	border: $tamano-borde $color-borde solid;
+	&:hover {
+		background: darken($background, 20%);
+		transform: scale(1.2);
+	}
+}
+
+.boton-principal {
+	@include hacer-boton(12px, magenta, 10px, 40px, white, 1px, black);
+}
+
+.boton-secundario {
+	@include hacer-boton(12px, blue, 10px, 40px, cyan, 2px, red);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
